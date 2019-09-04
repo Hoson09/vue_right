@@ -3,11 +3,11 @@
     <img src="./assets/logo.png" />
     <div>
       <p>
-        If iView is successfully added to this project, you'll see an
-        <code v-text="'<Button>'"></code>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
         below
       </p>
-      <Button type="primary">Button</Button>
+      <el-button>el-button</el-button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
