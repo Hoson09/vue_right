@@ -50,6 +50,48 @@ export default {
           age: 26,
           address: "Ottawa No. 2 Lake Park",
           date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
         }
       ]
     };
@@ -59,6 +101,7 @@ export default {
 <style lang="scss" scoped>
 .tab-box {
   height: 100%;
+  line-height: 40px;
   overflow: scroll;
 }
 </style>
