@@ -10,9 +10,12 @@
         </el-aside>
         <el-container>
           <el-main>
+            <main-header></main-header>
             <table-view></table-view>
           </el-main>
-          <el-footer>Footer</el-footer>
+          <el-footer>
+            <page-view></page-view>
+          </el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -22,6 +25,9 @@
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
 import TableView from "../components/TableView";
+import PageView from "../components/PageView";
+import MainHeader from "../components/MainHeader";
+
 export default {
   name: "mainview",
   data() {
@@ -30,7 +36,9 @@ export default {
   components: {
     "header-view": HeaderView,
     "tree-view": TreeView,
-    "table-view": TableView
+    "table-view": TableView,
+    "page-view": PageView,
+    "main-header": MainHeader
   }
 };
 </script>
@@ -57,7 +65,7 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     .el-aside {
-      flex: 0 0 250px;
+      flex: 0 0 200px;
       height: 100%;
       background-color: #fff;
       color: #333;
@@ -78,6 +86,10 @@ export default {
         color: #333;
         text-align: center;
         line-height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
       }
       .el-footer {
         flex: 0 0 60px;

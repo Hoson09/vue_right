@@ -1,6 +1,12 @@
 <template>
   <div class="tab-box">
-    <Table border ref="selection" :columns="columns4" :data="data1"></Table>
+    <Table
+      :height="430"
+      border
+      ref="selection"
+      :columns="columns4"
+      :data="data1"
+    ></Table>
   </div>
 </template>
 <script>
@@ -50,6 +56,54 @@ export default {
           age: 26,
           address: "Ottawa No. 2 Lake Park",
           date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
+        },
+        {
+          name: "huyi",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          date: "2016-10-04"
         }
       ]
     };
@@ -58,7 +112,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tab-box {
-  height: 100%;
-  overflow: scroll;
+  flex: 1 1 500px;
+  line-height: 40px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 </style>
