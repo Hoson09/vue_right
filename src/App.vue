@@ -7,7 +7,8 @@
  -->
 <template>
   <div id="app">
-    <router-view></router-view>
+    <!-- <AddLogin></AddLogin> -->
+    <router-view />
   </div>
 </template>
 
