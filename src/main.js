@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store";
 import "./plugins/iview.js";
 import "./plugins/element.js";
+import "element-ui/lib/theme-chalk/index.css";
+import "./static/elementview.scss";
 
 Vue.config.productionTip = false;
 

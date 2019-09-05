@@ -1,117 +1,103 @@
 <template>
-  <div class="layout">
-    <Layout>
-      <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
-          <div class="layout-logo"></div>
-          <div class="layout-nav">
-            <MenuItem name="1">
-              <Icon type="ios-navigate"></Icon>
-              Item 1
-            </MenuItem>
-            <MenuItem name="2">
-              <Icon type="ios-keypad"></Icon>
-              Item 2
-            </MenuItem>
-            <MenuItem name="3">
-              <Icon type="ios-analytics"></Icon>
-              Item 3
-            </MenuItem>
-            <MenuItem name="4">
-              <Icon type="ios-paper"></Icon>
-              Item 4
-            </MenuItem>
-          </div>
-        </Menu>
-      </Header>
-      <Layout :style="{ padding: '0 50px' }">
-        <Breadcrumb :style="{ margin: '16px 0' }">
-          <BreadcrumbItem>Home</BreadcrumbItem>
-          <BreadcrumbItem>Components</BreadcrumbItem>
-          <BreadcrumbItem>Layout</BreadcrumbItem>
-        </Breadcrumb>
-        <Content
-          :style="{ padding: '24px 0', minHeight: '280px', background: '#fff' }"
-        >
-          <Layout>
-            <Sider hide-trigger :style="{ background: '#fff' }">
-              <Menu
-                active-name="1-2"
-                theme="light"
-                width="auto"
-                :open-names="['1']"
-              >
-                <Submenu name="1">
-                  <template slot="title">
-                    <Icon type="ios-navigate"></Icon>
-                    Item 1
-                  </template>
-                  <MenuItem name="1-1">Option 1</MenuItem>
-                  <MenuItem name="1-2">Option 2</MenuItem>
-                  <MenuItem name="1-3">Option 3</MenuItem>
-                </Submenu>
-                <Submenu name="2">
-                  <template slot="title">
-                    <Icon type="ios-keypad"></Icon>
-                    Item 2
-                  </template>
-                  <MenuItem name="2-1">Option 1</MenuItem>
-                  <MenuItem name="2-2">Option 2</MenuItem>
-                </Submenu>
-                <Submenu name="3">
-                  <template slot="title">
-                    <Icon type="ios-analytics"></Icon>
-                    Item 3
-                  </template>
-                  <MenuItem name="3-1">Option 1</MenuItem>
-                  <MenuItem name="3-2">Option 2</MenuItem>
-                </Submenu>
-              </Menu>
-            </Sider>
-            <Content
-              :style="{
-                padding: '24px',
-                minHeight: '280px',
-                background: '#fff'
-              }"
-            >
-              Content
-            </Content>
-          </Layout>
-        </Content>
-      </Layout>
-      <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
-    </Layout>
+  <div class="mainview">
+    <el-container>
+      <el-header>
+        <header-view></header-view>
+      </el-header>
+      <el-container>
+        <el-aside>
+          <tree-view></tree-view>
+        </el-aside>
+        <el-container>
+          <el-main>
+            <table-view></table-view>
+          </el-main>
+          <el-footer>Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 <script>
-export default {};
+import HeaderView from "../components/HeaderView";
+import TreeView from "../components/TreeView";
+import TableView from "../components/TableView";
+export default {
+  name: "mainview",
+  data() {
+    return {};
+  },
+  components: {
+    "header-view": HeaderView,
+    "tree-view": TreeView,
+    "table-view": TableView
+  }
+};
 </script>
 <style scoped lang="scss">
-.layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
+.mainview {
+  height: 100%;
+}
+.mainview > .el-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  .el-header {
+    flex: 0 0 60px;
+    width: 100%;
+    background-color: #b3c0d1;
+    line-height: 60px;
+  }
+  .el-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    .el-aside {
+      flex: 0 0 250px;
+      height: 100%;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      line-height: 160px;
+    }
+    .el-container {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      .el-main {
+        //可以解决这个table撑得过大的bug
+        flex: 1 1 500px;
+        width: 100%;
+        background-color: #e9eef3;
+        color: #333;
+        text-align: center;
+        line-height: 160px;
+      }
+      .el-footer {
+        flex: 0 0 60px;
+        width: 100%;
+        background-color: #b3c0d1;
+        color: #333;
+        text-align: center;
+        line-height: 60px;
+      }
+    }
+  }
+}
+</style>
 
-  .layout-logo {
-    width: 100px;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
-    float: left;
-    position: relative;
-    top: 15px;
-    left: 20px;
-  }
-  .layout-nav {
-    width: 420px;
-    margin: 0 auto;
-    margin-right: 20px;
-  }
-  .layout-footer-center {
-    text-align: center;
-  }
+<style lang="scss">
+//没有scoped则说明是设置全局的样式
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
 }
 </style>
