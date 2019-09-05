@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-05 14:00:58
+ * @LastEditTime: 2019-09-05 14:07:31
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="tab-box">
     <Table
@@ -119,5 +126,8 @@ export default {
   display: flex;
   justify-items: center;
   align-items: center;
+  .ivu-table-wrapper {
+    width: 100%;
+  }
 }
 </style>
