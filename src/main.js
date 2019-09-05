@@ -5,6 +5,8 @@ import router from "./router";
 import store from "./store";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import "./plugins/iview.js";
+import "./static/elementview.scss";
 
 import "./plugins/element.js";
 import "./static/index.scss";

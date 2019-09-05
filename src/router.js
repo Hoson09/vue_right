@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import MainView from "./views/MainView";
 import AddLogin from "./views/addLogin";
 // import about from "./views/about";
 
@@ -14,9 +14,9 @@ export default new Router({
       component: AddLogin
     },
     {
-      path: "/home",
-      name: "Home",
-      component: Home
+      path: "/MainView",
+      name: "MainView",
+      component: MainView
     }
     // {
     //   path: "/about",

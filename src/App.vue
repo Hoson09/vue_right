@@ -6,13 +6,9 @@
 </template>
 
 <script>
-// import AddLogin from "./views/addLogin";
-
 export default {
   name: "app",
-  components: {
-    // AddLogin
-  }
+  components: {}
 };
 </script>
 
