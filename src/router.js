@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MainView from "./views/MainView";
+import AddLogin from "./views/addLogin";
+// import about from "./views/about";
 
 Vue.use(Router);
 
@@ -8,10 +10,14 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "mainview",
+      name: "AddLogin",
+      component: AddLogin
+    },
+    {
+      path: "/MainView",
+      name: "MainView",
       component: MainView
     }
-    // ,
     // {
     //   path: "/about",
     //   name: "about",
