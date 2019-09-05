@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 /*
  * @Description: In User Settings Edit
  * @Author: your name
- * @Date: 2019-09-04 16:13:27
- * @LastEditTime: 2019-09-04 19:11:09
+ * @Date: 2019-09-05 10:38:23
+ * @LastEditTime: 2019-09-05 10:42:37
  * @LastEditors: Please set LastEditors
  */
-import Vue from "vue";
-import { Button } from "element-ui";
-
-Vue.use(Button);
-=======
 import Vue from "vue";
 import { Button } from "element-ui";
 import { Container } from "element-ui";
@@ -29,4 +23,3 @@ Vue.use(Main);
 Vue.use(Footer);
 Vue.use(Tree);
 Vue.use(Table);
->>>>>>> a96ebf0a51a2796d6ad048421d2ee7f7a9e3f111
