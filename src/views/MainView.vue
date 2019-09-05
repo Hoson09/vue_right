@@ -12,7 +12,9 @@
           <el-main>
             <table-view></table-view>
           </el-main>
-          <el-footer>Footer</el-footer>
+          <el-footer>
+            <page-view></page-view>
+          </el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -22,6 +24,7 @@
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
 import TableView from "../components/TableView";
+import PageView from "../components/PageView";
 export default {
   name: "mainview",
   data() {
@@ -30,7 +33,8 @@ export default {
   components: {
     "header-view": HeaderView,
     "tree-view": TreeView,
-    "table-view": TableView
+    "table-view": TableView,
+    "page-view": PageView
   }
 };
 </script>
