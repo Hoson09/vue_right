@@ -60,6 +60,7 @@
       :total="totalNum"
       :current="current"
       show-elevator
+      show-total
     />
     <!-- <Page @on-change="Pagechange" :total="totalNum" /> -->
     <Modal
@@ -86,7 +87,7 @@
 <script>
 import axios from "axios";
 // import { constants } from "crypto";
-// import api from "../api/http";
+import api from "../api/http";
 
 export default {
   data() {
@@ -196,9 +197,9 @@ export default {
     cancel() {
       console.log(1);
     },
-    initTable(page = 1, limit = 10) {
-      axios
-        .get(`http://localhost:8888/per/user?_page=${page}&_limit=${limit}`)
+    initTable() {
+      api
+        .getUser(this.page, this.limit, this.serchVal)
         .then(res => { //eslint-disable-line
           this.data1 = res.data;
           this.totalNum = Number(res.headers["x-total-count"]);
@@ -207,20 +208,18 @@ export default {
     },
     Pagechange(page) {
       this.page = page;
+      this.initTable();
     },
     nowPagesize(size) {
       this.limit = size;
+      this.initTable();
     },
     // 分页
-    getUser(page = 1, limit = 10) {
-      axios
-        .get(`http://localhost:8888/per/user?_page=${page}&_limit=${limit}`)
-        .then(res => { //eslint-disable-line
-          console.log(res.data);
-          this.data1 = res.data;
-          // this.initTable();
-        })
-        .catch(() => {});
+    getUser() {
+      api.getUser(this.page, this.pageNum).then(res => {
+        this.data1 = res.data;
+        this.initTable();
+      });
     }
   },
   created() {
