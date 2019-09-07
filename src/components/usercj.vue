@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-04 15:41:33
- * @LastEditTime: 2019-09-07 13:33:16
+ * @LastEditTime: 2019-09-07 14:35:51
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -290,11 +290,13 @@ export default {
         .post("http://localhost:8888/per/user", this.formLeft)
         .then(res => {
           this.data1.push(res.data);
+          this.initTable();
         })
         .catch(() => {});
     }
   },
   created() {
+    this.getUser();
     axios
       .get("http://localhost:8888/per/user")
       .then(res => {
