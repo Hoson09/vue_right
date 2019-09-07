@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-07 10:06:36
+ * @LastEditTime: 2019-09-07 14:01:00
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="addLogin">
     <el-form
@@ -85,7 +92,7 @@ export default {
             .then(res => {
               console.log(res.data.code);
               if (res.data.code === 1) {
-                this.$router.push("/MainView");
+                this.$router.push("/main");
               } else {
                 message.info("登录失败");
               }
