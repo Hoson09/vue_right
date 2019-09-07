@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-06 20:03:22
- * @LastEditTime: 2019-09-07 10:09:45
+ * @LastEditTime: 2019-09-07 13:40:28
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -17,14 +17,9 @@
         </el-aside>
         <el-container>
           <el-main>
-            <!-- <main-header></main-header>
-            <table-view></table-view> -->
             <usercj></usercj>
-            <role></role>
+            <!-- <role></role> -->
           </el-main>
-          <el-footer>
-            <page-view></page-view>
-          </el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -34,11 +29,11 @@
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
 // import TableView from "../components/TableView";
-import PageView from "../components/PageView";
+// import PageView from "../components/PageView";
 // import MainHeader from "../components/MainHeader";
 import usercj from "../components/usercj";
 
-import Role from "../components/role";
+// import Role from "../components/role";
 export default {
   name: "mainview",
   data() {
@@ -48,10 +43,10 @@ export default {
     "header-view": HeaderView,
     "tree-view": TreeView,
     // "table-view": TableView,
-    "page-view": PageView,
-    usercj,
+    // "page-view": PageView,
+    usercj
     // "main-header": MainHeader
-    role: Role
+    // role: Role
   }
 };
 </script>

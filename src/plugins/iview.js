@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-05 10:38:23
- * @LastEditTime: 2019-09-07 10:09:49
+ * @LastEditTime: 2019-09-07 11:23:08
  * @LastEditors: Please set LastEditors
  */
 import Vue from "vue";
@@ -14,10 +14,14 @@ import {
   Input,
   Button,
   Table,
-  Message
+  Message,
+  Radio,
+  RadioGroup
 } from "iview";
 
 Vue.component("Table", Table);
+Vue.component("RadioGroup", RadioGroup);
+Vue.component("Radio", Radio);
 Vue.component("Button", Button);
 Vue.component("Input", Input);
 Vue.component("Page", Page);
