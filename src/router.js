@@ -2,7 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import MainView from "./views/MainView";
 import AddLogin from "./views/addLogin";
-// import about from "./views/about";
+import About from "./views/About";
+import Role from "./components/role";
 
 Vue.use(Router);
 
@@ -15,8 +16,18 @@ export default new Router({
     },
     {
       path: "/MainView",
-      name: "MainView",
-      component: MainView
+      component: MainView,
+      redirect: "/MainView/role",
+      children: [
+        {
+          path: "about",
+          component: About
+        },
+        {
+          path: "role",
+          component: Role
+        }
+      ]
     }
     // {
     //   path: "/about",

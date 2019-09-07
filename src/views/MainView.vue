@@ -10,7 +10,7 @@
         </el-aside>
         <el-container>
           <el-main>
-            <role></role>
+            <router-view></router-view>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -21,7 +21,7 @@
 <script>
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
-import Role from "../components/role";
+// import Role from "../components/role";
 export default {
   name: "mainview",
   data() {
@@ -29,8 +29,7 @@ export default {
   },
   components: {
     "header-view": HeaderView,
-    "tree-view": TreeView,
-    role: Role
+    "tree-view": TreeView
   }
 };
 </script>

@@ -8,6 +8,7 @@
       default-expand-all
       :indent="10"
       ref="tree"
+      @node-click="handleNodeClick"
     >
     </el-tree>
   </div>
@@ -28,11 +29,13 @@ export default {
             },
             {
               id: 3,
-              label: "角色管理"
+              label: "角色管理",
+              path: "/MainView/role"
             },
             {
               id: 3,
-              label: "权限管理"
+              label: "权限管理",
+              path: "/MainView/about"
             },
             {
               id: 4,
@@ -46,6 +49,12 @@ export default {
         label: "label"
       }
     };
+  },
+  methods: {
+    handleNodeClick(obj) {
+      console.log(obj); //打印出来看哪个值对你有用
+      this.$router.push({ path: obj.path });
+    }
   }
 };
 </script>
