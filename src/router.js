@@ -1,16 +1,30 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MainView from "./views/MainView";
+import RightView from "./views/RightView";
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: "/",
+      path: "/main",
       name: "mainview",
-      component: MainView
+      component: MainView,
+      children: [
+        {
+          path: "/right",
+          name: "rightview",
+          component: RightView
+        }
+      ]
     }
+    // ,
+    // {
+    //   path: "/",
+    //   name: "loginview",
+    //   component: LoginView
+    // }
     // ,
     // {
     //   path: "/about",
