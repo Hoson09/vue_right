@@ -8,6 +8,8 @@ let axiosIns = axios.interceptors.request.use(
       // console.log("tokensss", loginToken);
       // config.headers.Authorization = `Bearer ${loginToken}`;
       config.headers.Authorization = `${loginToken}`;
+    } else {
+      axios.defaults.headers.common["Authorization"] = "AUTH_TOKEN";
     }
     return config;
   },
