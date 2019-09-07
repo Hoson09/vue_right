@@ -239,18 +239,15 @@ export default {
 
 <style lang="scss">
 .tables {
-  height: 80px;
   .tables-button {
     height: 80px;
+    display: flex;
+    align-items: center;
     .ab {
       width: 100px;
       height: 35px;
-      margin-top: -130px;
       font-size: 16px;
       margin-right: 20px;
-    }
-    .ac {
-      margin-top: -130px;
     }
   }
   .ivu-table {
