@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-06 20:03:22
+ * @LastEditTime: 2019-09-06 20:26:00
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="mainview">
     <el-container>
@@ -10,8 +17,9 @@
         </el-aside>
         <el-container>
           <el-main>
-            <main-header></main-header>
-            <table-view></table-view>
+            <!-- <main-header></main-header>
+            <table-view></table-view> -->
+            <usercj></usercj>
           </el-main>
           <el-footer>
             <page-view></page-view>
@@ -24,9 +32,10 @@
 <script>
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
-import TableView from "../components/TableView";
+// import TableView from "../components/TableView";
 import PageView from "../components/PageView";
-import MainHeader from "../components/MainHeader";
+// import MainHeader from "../components/MainHeader";
+import usercj from "../components/usercj";
 
 export default {
   name: "mainview",
@@ -36,9 +45,10 @@ export default {
   components: {
     "header-view": HeaderView,
     "tree-view": TreeView,
-    "table-view": TableView,
+    // "table-view": TableView,
     "page-view": PageView,
-    "main-header": MainHeader
+    usercj
+    // "main-header": MainHeader
   }
 };
 </script>
