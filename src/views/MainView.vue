@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-06 20:03:22
- * @LastEditTime: 2019-09-06 20:26:00
+ * @LastEditTime: 2019-09-07 10:09:45
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -20,6 +20,7 @@
             <!-- <main-header></main-header>
             <table-view></table-view> -->
             <usercj></usercj>
+            <role></role>
           </el-main>
           <el-footer>
             <page-view></page-view>
@@ -37,6 +38,7 @@ import PageView from "../components/PageView";
 // import MainHeader from "../components/MainHeader";
 import usercj from "../components/usercj";
 
+import Role from "../components/role";
 export default {
   name: "mainview",
   data() {
@@ -47,8 +49,9 @@ export default {
     "tree-view": TreeView,
     // "table-view": TableView,
     "page-view": PageView,
-    usercj
+    usercj,
     // "main-header": MainHeader
+    role: Role
   }
 };
 </script>

@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import api from "../app/http";
+import api from "../api/http";
 import { message } from "element-ui";
 
 export default {
