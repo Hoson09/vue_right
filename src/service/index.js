@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-07 13:51:37
+ * @LastEditTime: 2019-09-07 14:11:26
+ * @LastEditors: Please set LastEditors
+ */
 import axios from "axios";
 // 添加请求拦截器
 let axiosIns = axios.interceptors.request.use(
