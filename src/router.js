@@ -2,6 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import MainView from "./views/MainView";
 import RightView from "./views/RightView";
+import AddLogin from "./views/addLogin";
+// import about from "./views/about";
 
 Vue.use(Router);
 
@@ -18,8 +20,12 @@ export default new Router({
           component: RightView
         }
       ]
+    },
+    {
+      path: "/",
+      name: "AddLogin",
+      component: AddLogin
     }
-    // ,
     // {
     //   path: "/",
     //   name: "loginview",
