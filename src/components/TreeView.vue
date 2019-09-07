@@ -5,14 +5,15 @@
       :data="data"
       icon-class="el-icon-caret-right"
       :props="defaultProps"
-      default-expand-all
       :indent="10"
       ref="tree"
+      @node-click="clickHandle"
     >
     </el-tree>
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "treeview",
   data() {
@@ -24,19 +25,23 @@ export default {
           children: [
             {
               id: 2,
-              label: "用户管理"
+              label: "用户管理",
+              url: ""
             },
             {
               id: 3,
-              label: "角色管理"
-            },
-            {
-              id: 3,
-              label: "权限管理"
+              label: "角色管理",
+              url: ""
             },
             {
               id: 4,
-              label: "路由权限"
+              label: "权限管理",
+              url: "right"
+            },
+            {
+              id: 5,
+              label: "路由权限",
+              url: ""
             }
           ]
         }
@@ -46,6 +51,13 @@ export default {
         label: "label"
       }
     };
+  },
+  methods: {
+    ...mapMutations(["treeClick"]),
+    clickHandle(data) {
+      // this.treeClick(data.url);
+      this.$router.push(data.url);
+    }
   }
 };
 </script>
