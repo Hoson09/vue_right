@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-06 20:03:22
+ * @LastEditTime: 2019-09-07 13:56:18
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="mainview">
     <el-container>
@@ -9,10 +16,14 @@
           <tree-view></tree-view>
         </el-aside>
         <el-container>
-          <el-main>
-            <router-view></router-view>
+          <!-- <el-main>
+            <main-header></main-header>
+            <table-view></table-view>
           </el-main>
-          <el-footer>Footer</el-footer>
+          <el-footer>
+            <page-view></page-view>
+          </el-footer> -->
+          <router-view></router-view>
         </el-container>
       </el-container>
     </el-container>
@@ -21,15 +32,24 @@
 <script>
 import HeaderView from "../components/HeaderView";
 import TreeView from "../components/TreeView";
-// import Role from "../components/role";
+// import TableView from "../components/TableView";
+// import PageView from "../components/PageView";
+// import MainHeader from "../components/MainHeader";
+import { mapState } from "vuex";
 export default {
   name: "mainview",
   data() {
     return {};
   },
+  computed: {
+    ...mapState(["buttonId"])
+  },
   components: {
     "header-view": HeaderView,
     "tree-view": TreeView
+    // "table-view": TableView,
+    // "page-view": PageView,
+    // "main-header": MainHeader
   }
 };
 </script>
@@ -52,6 +72,7 @@ export default {
   .el-container {
     flex: 1;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -63,30 +84,34 @@ export default {
       text-align: center;
       line-height: 160px;
     }
-    .el-container {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      .el-main {
-        //可以解决这个table撑得过大的bug
-        flex: 1 1 500px;
-        width: 100%;
-        background-color: #e9eef3;
-        color: #333;
-        text-align: center;
-        line-height: 160px;
-      }
-      .el-footer {
-        flex: 0 0 60px;
-        width: 100%;
-        background-color: #b3c0d1;
-        color: #333;
-        text-align: center;
-        line-height: 60px;
-      }
-    }
+    // .el-container {
+    //   flex: 1;
+    //   height: 100%;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: start;
+    //   .el-main {
+    //     //可以解决这个table撑得过大的bug
+    //     flex: 1 1 500px;
+    //     width: 100%;
+    //     background-color: #e9eef3;
+    //     color: #333;
+    //     text-align: center;
+    //     line-height: 30px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: flex-start;
+    //     align-items: center;
+    //   }
+    //   .el-footer {
+    //     flex: 0 0 60px;
+    //     width: 100%;
+    //     background-color: #b3c0d1;
+    //     color: #333;
+    //     text-align: center;
+    //     line-height: 60px;
+    //   }
+    // }
   }
 }
 </style>
@@ -98,5 +123,7 @@ body,
 #app {
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 </style>

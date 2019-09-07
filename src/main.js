@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-05 16:47:23
+ * @LastEditTime: 2019-09-05 16:50:04
+ * @LastEditors: Please set LastEditors
+ */
 import Vue from "vue";
 import App from "./App.vue";
 // import addLogin from "./views/addLogin";
