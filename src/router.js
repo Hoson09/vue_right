@@ -10,6 +10,7 @@ import Router from "vue-router";
 import MainView from "./views/MainView";
 import RightView from "./views/RightView";
 import AddLogin from "./views/addLogin";
+import Role from "./components/role";
 import usercj from "./components/usercj";
 // import about from "./views/about";
 
@@ -41,6 +42,11 @@ export default new Router({
           path: "/user",
           name: "usercj",
           component: usercj
+        },
+        {
+          path: "/role",
+          name: "Role",
+          component: Role
         }
       ]
     },

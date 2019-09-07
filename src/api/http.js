@@ -6,11 +6,11 @@ export default {
     return axios.post("http://localhost:8888/api/userlogin", data);
   },
   asyncOKK(row, data) {
-    axios.put(`http://localhost:8888/per/user/${row.id}`, data);
+    axios.put(`http://localhost:8888/per/role/${row.id}`, data);
   },
   getUser(page = 1, limit = 10) {
     return axios.get(
-      `http://localhost:8888/per/user?_page=${page}&_limit=${limit}`
+      `http://localhost:8888/per/role?_page=${page}&_limit=${limit}`
     );
   }
 };

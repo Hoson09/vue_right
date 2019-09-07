@@ -24,11 +24,11 @@
         <FormItem label="name">
           <Input v-model="formLeft.name" />
         </FormItem>
-        <FormItem label="学校">
-          <Input v-model="formLeft.school" />
+        <FormItem label="时间">
+          <Input v-model="formLeft.subon" />
         </FormItem>
-        <FormItem label="邮箱">
-          <Input v-model="formLeft.mail" />
+        <FormItem label="权限状态">
+          <Input v-model="formLeft.status" />
         </FormItem>
       </Form>
     </Modal>
@@ -73,11 +73,11 @@
         <FormItem label="name">
           <Input v-model="formRight.name" />
         </FormItem>
-        <FormItem label="学校">
-          <Input v-model="formRight.school" />
+        <FormItem label="时间">
+          <Input v-model="formRight.subon" />
         </FormItem>
-        <FormItem label="邮箱">
-          <Input v-model="formRight.mail" />
+        <FormItem label="权限状态">
+          <Input v-model="formRight.status" />
         </FormItem>
       </Form>
     </Modal>
@@ -122,12 +122,12 @@ export default {
           slot: "name"
         },
         {
-          title: "邮箱",
-          key: "mail"
+          title: "时间",
+          key: "subon"
         },
         {
-          title: "学校",
-          key: "school"
+          title: "权限状态",
+          key: "status"
         },
         {
           title: "Action",
@@ -143,7 +143,7 @@ export default {
     // 查询
     serch() {
       axios
-        .get(`http://localhost:8888/per/user?name_like=${this.serchVal}`)
+        .get(`http://localhost:8888/per/role?name_like=${this.serchVal}`)
         .then(res => {
           this.data1 = res.data;
         });
@@ -156,7 +156,7 @@ export default {
     // 确认修改
     asyncOK(row) {
       axios
-        .put(`http://localhost:8888/per/user/${row.id}`, this.formRight)
+        .put(`http://localhost:8888/per/role/${row.id}`, this.formRight)
         .then(res => {
           // console.log(res.data);
           let editindex = this.data1.findIndex(row => res.data.id === row.id);
@@ -173,7 +173,7 @@ export default {
     // 删除
     remove(row, index) {
       axios
-        .delete("http://localhost:8888/per/user/" + row.id)
+        .delete("http://localhost:8888/per/role/" + row.id)
           .then(res => {//eslint-disable-line
           this.data1.splice(index, 1);
           this.$message.success("删除成功");
@@ -185,9 +185,10 @@ export default {
     // 添加
     ok() {
       axios
-        .post("http://localhost:8888/per/user", this.formLeft)
+        .post("http://localhost:8888/per/role", this.formLeft)
         .then(res => {
           this.data1.push(res.data);
+          this.initTable();
         })
         .catch(() => {});
     },
@@ -225,7 +226,7 @@ export default {
   created() {
     this.getUser();
     axios
-      .get("http://localhost:8888/per/user")
+      .get("http://localhost:8888/per/role")
       .then(res => {
         this.data1 = res.data;
       })
