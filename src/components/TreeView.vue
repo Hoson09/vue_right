@@ -29,6 +29,7 @@ export default {
         {
           id: 1,
           label: "列表分配",
+          url: "mainlist",
           children: [
             {
               id: 2,
@@ -62,7 +63,7 @@ export default {
   methods: {
     ...mapMutations(["treeClick"]),
     clickHandle(data) {
-      // this.treeClick(data.url);
+      this.treeClick(data.id);
       this.$router.push(data.url);
     }
   }

@@ -23,7 +23,12 @@
           <el-footer>
             <page-view></page-view>
           </el-footer> -->
-          <router-view></router-view>
+          <template v-if="buttonId">
+            <router-view to="mainlist"></router-view>
+          </template>
+          <template v-else>
+            <router-view></router-view>
+          </template>
         </el-container>
       </el-container>
     </el-container>
