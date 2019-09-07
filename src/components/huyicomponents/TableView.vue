@@ -86,6 +86,9 @@ export default {
     EventBus.$on("changeTableView", data => {
       this.data4 = data;
     });
+    EventBus.$on("pageChangeTable", data => {
+      this.data4 = data;
+    });
   },
   methods: {
     ...mapMutations(["selectOptionNum", "getTableObj"]),
@@ -112,7 +115,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tab-box {
-  flex: 1 1 450px;
+  flex: 1 1 460px;
   //lineheight可以控制table的行高
   line-height: 40px;
   width: 100%;
