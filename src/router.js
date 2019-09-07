@@ -1,14 +1,32 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-04 14:14:00
+ * @LastEditTime: 2019-09-07 14:03:24
+ * @LastEditors: Please set LastEditors
+ */
 import Vue from "vue";
 import Router from "vue-router";
 import MainView from "./views/MainView";
 import RightView from "./views/RightView";
 import AddLogin from "./views/addLogin";
+import usercj from "./components/usercj";
 // import about from "./views/about";
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    // {
+    //   path: "/",
+    //   name: "home",
+    //   component: Home
+    // },
+    // {
+    //   path: "/",
+    //   name: "mainview",
+    //   component: MainView
+    // }
     {
       path: "/main",
       name: "mainview",
@@ -18,6 +36,11 @@ export default new Router({
           path: "/right",
           name: "rightview",
           component: RightView
+        },
+        {
+          path: "/user",
+          name: "usercj",
+          component: usercj
         }
       ]
     },

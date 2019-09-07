@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-07 10:06:36
+ * @LastEditTime: 2019-09-07 14:06:32
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="addLogin">
     <el-form
@@ -32,7 +39,7 @@
   </div>
 </template>
 <script>
-import api from "../app/http";
+import api from "../api/http";
 import { message } from "element-ui";
 
 export default {
@@ -85,7 +92,7 @@ export default {
             .then(res => {
               console.log(res.data.code);
               if (res.data.code === 1) {
-                this.$router.push("main");
+                this.$router.push("/main");
               } else {
                 message.info("登录失败");
               }

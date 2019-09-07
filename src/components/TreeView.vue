@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-07 13:51:37
+ * @LastEditTime: 2019-09-07 14:01:52
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="treeview">
     <el-tree
@@ -26,7 +33,7 @@ export default {
             {
               id: 2,
               label: "用户管理",
-              url: ""
+              url: "user"
             },
             {
               id: 3,

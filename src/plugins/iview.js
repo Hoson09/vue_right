@@ -1,30 +1,33 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-05 10:38:23
+ * @LastEditTime: 2019-09-07 13:56:11
+ * @LastEditors: Please set LastEditors
+ */
 import Vue from "vue";
-import { Table } from "iview";
-import { Page } from "iview";
-import { Input } from "iview";
-// import { Modal } from "iview";
-// import { Form } from "iview";
-// import { FormItem } from "iview";
-// import { Select } from "iview";
-// import { Option } from "iview";
-// import { Row } from "iview";
-// import { Col } from "iview";
-// import { RadioGroup } from "iview";
-// import { Radio } from "iview";
-// import { Button } from "iview";
+import {
+  Form,
+  FormItem,
+  Modal,
+  Page,
+  Input,
+  Button,
+  Table,
+  Message,
+  Radio,
+  RadioGroup
+} from "iview";
 
 Vue.component("Table", Table);
-Vue.component("Page", Page);
+Vue.component("RadioGroup", RadioGroup);
+Vue.component("Radio", Radio);
+Vue.component("Button", Button);
 Vue.component("Input", Input);
-// Vue.component("Modal", Modal);
-// Vue.component("From", Form);
-// Vue.component("FormItem", FormItem);
-// Vue.component("Select", Select);
-// Vue.component("Option", Option);
-// Vue.component("Row", Row);
-// Vue.component("Col", Col);
-// Vue.component("RadioGroup", RadioGroup);
-// Vue.component("Button", Button);
-// Vue.component("Radio", Radio);
+Vue.component("Page", Page);
+Vue.component("Modal", Modal);
+Vue.component("FormItem", FormItem);
+Vue.component("Form", Form);
+Vue.component("Message", Message);
 
 import "iview/dist/styles/iview.css";
