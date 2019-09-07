@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-04 15:41:33
- * @LastEditTime: 2019-09-07 14:35:51
+ * @LastEditTime: 2019-09-07 14:50:11
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -11,6 +11,8 @@
       <Button @click="modal1 = true" type="info">添加用户</Button>
       <Button type="success">删除用户</Button>
       <Button type="warning">编辑用户</Button>
+      <Button type="success">设置权限</Button>
+      <Button type="warning">设置角色</Button>
       <Button @click="serch" type="error">查询</Button>
       <Input
         class="search-user"
