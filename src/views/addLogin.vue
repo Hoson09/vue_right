@@ -85,7 +85,7 @@ export default {
             .then(res => {
               console.log(res.data.code);
               if (res.data.code === 1) {
-                this.$router.push("/MainView");
+                this.$router.push("main");
               } else {
                 message.info("登录失败");
               }
