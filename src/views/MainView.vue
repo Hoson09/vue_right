@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-06 20:03:22
- * @LastEditTime: 2019-09-07 13:40:28
+ * @LastEditTime: 2019-09-07 13:56:18
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -16,10 +16,14 @@
           <tree-view></tree-view>
         </el-aside>
         <el-container>
-          <el-main>
-            <usercj></usercj>
-            <!-- <role></role> -->
+          <!-- <el-main>
+            <main-header></main-header>
+            <table-view></table-view>
           </el-main>
+          <el-footer>
+            <page-view></page-view>
+          </el-footer> -->
+          <router-view></router-view>
         </el-container>
       </el-container>
     </el-container>
@@ -31,22 +35,21 @@ import TreeView from "../components/TreeView";
 // import TableView from "../components/TableView";
 // import PageView from "../components/PageView";
 // import MainHeader from "../components/MainHeader";
-import usercj from "../components/usercj";
-
-// import Role from "../components/role";
+import { mapState } from "vuex";
 export default {
   name: "mainview",
   data() {
     return {};
   },
+  computed: {
+    ...mapState(["buttonId"])
+  },
   components: {
     "header-view": HeaderView,
-    "tree-view": TreeView,
+    "tree-view": TreeView
     // "table-view": TableView,
     // "page-view": PageView,
-    usercj
     // "main-header": MainHeader
-    // role: Role
   }
 };
 </script>
@@ -69,45 +72,46 @@ export default {
   .el-container {
     flex: 1;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     .el-aside {
-      flex: 0 0 200px;
+      flex: 0 0 250px;
       height: 100%;
       background-color: #fff;
       color: #333;
       text-align: center;
       line-height: 160px;
     }
-    .el-container {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      .el-main {
-        //可以解决这个table撑得过大的bug
-        flex: 1 1 500px;
-        width: 100%;
-        background-color: #e9eef3;
-        color: #333;
-        text-align: center;
-        line-height: 160px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-      }
-      .el-footer {
-        flex: 0 0 60px;
-        width: 100%;
-        background-color: #b3c0d1;
-        color: #333;
-        text-align: center;
-        line-height: 60px;
-      }
-    }
+    // .el-container {
+    //   flex: 1;
+    //   height: 100%;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: start;
+    //   .el-main {
+    //     //可以解决这个table撑得过大的bug
+    //     flex: 1 1 500px;
+    //     width: 100%;
+    //     background-color: #e9eef3;
+    //     color: #333;
+    //     text-align: center;
+    //     line-height: 30px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: flex-start;
+    //     align-items: center;
+    //   }
+    //   .el-footer {
+    //     flex: 0 0 60px;
+    //     width: 100%;
+    //     background-color: #b3c0d1;
+    //     color: #333;
+    //     text-align: center;
+    //     line-height: 60px;
+    //   }
+    // }
   }
 }
 </style>
@@ -119,5 +123,7 @@ body,
 #app {
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 </style>
