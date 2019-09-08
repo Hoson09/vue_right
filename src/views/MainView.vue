@@ -23,12 +23,7 @@
           <el-footer>
             <page-view></page-view>
           </el-footer> -->
-          <template v-if="buttonId">
-            <router-view to="mainlist"></router-view>
-          </template>
-          <template v-else>
-            <router-view></router-view>
-          </template>
+          <router-view></router-view>
         </el-container>
       </el-container>
     </el-container>
@@ -45,6 +40,11 @@ export default {
   name: "mainview",
   data() {
     return {};
+  },
+  created() {
+    if (!this.buttonId) {
+      this.$router.push("mainlist");
+    }
   },
   computed: {
     ...mapState(["buttonId"])

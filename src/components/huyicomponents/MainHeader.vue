@@ -7,7 +7,9 @@
       <Input
         search
         enter-button
+        @on-change="searchFunction2"
         @on-search="searchFunction1"
+        @on-enter="searchFunction3"
         :maxlength="100"
         placeholder="请输入要搜索的内容"
       />
@@ -38,25 +40,52 @@ export default {
     "from-content": FromContent
   },
   computed: {
-    ...mapState(["buttonId", "selectItem"])
+    ...mapState(["buttonId", "selectItem", "tableObj"])
   },
   methods: {
-    ...mapMutations(["setDialogType"]),
-    // searchFunction2(val) {
-    //   if (val.data) {
-    //     this.paramID += val.data;
-    //   } else {
-    //     this.paramID.split(-1, 1, "");
-    //   }
-    //   console.log("id:", this.paramID);
-    // },
+    ...mapMutations(["setDialogType", "getTableObj", "setCurrentPage"]),
+    searchFunction3() {
+      service
+        .findItem(this.paramID)
+        .then(res => {
+          console.log("sea3", res.data);
+          EventBus.$emit("changeTableView", res.data);
+          this.getTableObj({ "x-total-count": res.data.length });
+        })
+        .catch(() => {
+          console.log("网络错误");
+        });
+    },
+    searchFunction2(val) {
+      if (val.data) {
+        this.paramID += val.data;
+        // console.log(this.paramID);
+      } else {
+        let arr = this.paramID.split("");
+        arr.splice(arr.length - 1, 1, "");
+        this.paramID = arr.join("");
+        // console.log(this.paramID, arr);
+        !this.paramID &&
+          service
+            .findItem(this.paramID)
+            .then(res => {
+              console.log(res.data);
+              EventBus.$emit("changeTableView", res.data);
+              this.getTableObj({ "x-total-count": res.data.length });
+            })
+            .catch(() => {
+              console.log("网络错误");
+            });
+      }
+    },
     searchFunction1(val) {
-      console.log("val:", val);
+      // console.log("val:", val);
       service
         .findItem(val)
         .then(res => {
           console.log(res.data);
           EventBus.$emit("changeTableView", res.data);
+          this.getTableObj({ "x-total-count": res.data.length });
         })
         .catch(() => {
           console.log("网络错误");

@@ -8,7 +8,7 @@
 </template>
 <script>
 import service from "../../service/index";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import EventBus from "../../eventBus";
 export default {
   data() {
@@ -18,11 +18,13 @@ export default {
     ...mapState(["tableObj"])
   },
   methods: {
+    ...mapMutations(["setCurrentPage"]),
     pageChage(pageNum) {
       service
         .getRight(pageNum, 10)
         .then(res => {
           EventBus.$emit("pageChangeTable", res.data);
+          this.setCurrentPage(pageNum);
         })
         .catch(() => {
           console.log("数据请求有误");
