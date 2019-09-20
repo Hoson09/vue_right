@@ -3,6 +3,7 @@
     <el-button @click="add" type="primary">添加权限</el-button>
     <el-button @click="del" type="warning">删除权限</el-button>
     <el-button @click="changeRight" type="success">编辑权限</el-button>
+    <el-button @click="addUser" type="danger">关联用户</el-button>
     <div class="search">
       <Input
         search
@@ -18,6 +19,9 @@
     <el-dialog :title="rightTitle" :visible.sync="dialogFormVisible">
       <from-content v-on:closedialog="closeDialog"></from-content>
     </el-dialog>
+    <el-dialog title="关联用户" :visible.sync="dialogTableVisible">
+      <role-table v-on:closetable="closeDialog"></role-table>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -26,6 +30,7 @@ import FromContent from "./FromContent";
 import EventBus from "../../eventBus";
 import { Message } from "element-ui";
 import service from "../../service/index";
+import RoleTable from "./RoleTable";
 
 export default {
   name: "mainheader",
@@ -33,11 +38,13 @@ export default {
     return {
       dialogFormVisible: false,
       rightTitle: "",
-      paramID: ""
+      paramID: "",
+      dialogTableVisible: false
     };
   },
   components: {
-    "from-content": FromContent
+    "from-content": FromContent,
+    "role-table": RoleTable
   },
   computed: {
     ...mapState(["buttonId", "selectItem", "tableObj"])
@@ -126,6 +133,18 @@ export default {
     closeDialog(e) {
       EventBus.$emit("refresh");
       this.dialogFormVisible = e;
+      this.dialogTableVisible = e;
+    },
+    addUser() {
+      if (this.selectItem.length == 0 || this.selectItem.length > 1) {
+        Message({
+          showClose: true,
+          message: "请选择关联用户的单一权限",
+          type: "warning"
+        });
+        return;
+      }
+      this.dialogTableVisible = true;
     }
   }
 };
