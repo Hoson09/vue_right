@@ -41,6 +41,11 @@ export default {
   data() {
     return {};
   },
+  created() {
+    if (!this.buttonId) {
+      this.$router.push("mainlist");
+    }
+  },
   computed: {
     ...mapState(["buttonId"])
   },

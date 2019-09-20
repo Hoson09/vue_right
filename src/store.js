@@ -14,7 +14,9 @@ export default new Vuex.Store({
     buttonId: "",
     selectItem: [],
     dialogtype: "addOptions",
-    tableObj: {}
+    tableObj: {},
+    currentPageNum: "",
+    tableCellNum: ""
   },
   mutations: {
     treeClick(state, payload) {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     },
     getTableObj(state, payload) {
       state.tableObj = payload;
+    },
+    setCurrentPage(state, payload) {
+      state.currentPageNum = payload;
+    },
+    setTableCellNum(state, payload) {
+      state.tableCellNum = payload;
     }
   },
   actions: {}

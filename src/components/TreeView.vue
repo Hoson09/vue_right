@@ -13,6 +13,7 @@
       icon-class="el-icon-caret-right"
       :props="defaultProps"
       :indent="10"
+      node-key="id"
       ref="tree"
       @node-click="clickHandle"
     >
@@ -29,6 +30,7 @@ export default {
         {
           id: 1,
           label: "列表分配",
+          url: "mainlist",
           children: [
             {
               id: 2,
@@ -62,8 +64,11 @@ export default {
   methods: {
     ...mapMutations(["treeClick"]),
     clickHandle(data) {
-      // this.treeClick(data.url);
+      this.treeClick(data.id);
       this.$router.push(data.url);
+    },
+    setCurrentNode(val) {
+      console.log(val);
     }
   }
 };
@@ -71,5 +76,16 @@ export default {
 <style scoped lang="scss">
 .treeview {
   padding: 30px 0 0 10px;
+  .el-tree {
+    .el-tree-node {
+      .el-tree-node__children {
+        .el-tree-node.is-current {
+          .el-tree-node__content {
+            background-color: #c09 !important;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
