@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-07 14:45:17
- * @LastEditTime: 2019-09-20 19:54:56
+ * @LastEditTime: 2019-09-21 14:27:21
  * @LastEditors: Please set LastEditors
  */
 import axios from "axios";
@@ -81,21 +81,6 @@ export default {
     return axios.post("/per/user_permission", data);
   },
 
-  // 角色管理里面得设置角色权限
-  getAllRolePower(q = "") {
-    return axios.get(`/per/permission/${q ? "?q=" + q : ""}`);
-  },
-  GetUserIRolePower(param) {
-    return axios.get(`/per/user_permission/?userId=${param.userId}`);
-  },
-  deleteRolePowerUser(data) {
-    //删除
-    return axios.delete("/per/user_permission/" + data.removeId);
-  },
-  // 添加
-  addRolePowerUser(data) {
-    return axios.post("/per/user_permission", data);
-  },
   addPowerLast(id) {
     return axios.get(`/per/getUserPer/${id}`);
   }
