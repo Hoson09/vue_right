@@ -1,10 +1,7 @@
 <template>
   <div class="tables">
     <div class="tables-button">
-      <Button @click="handleSelectAll(true)" class="ab">全选</Button>
-      <Button @click="handleSelectAll(false)" class="ab" type="primary"
-        >取消全选</Button
-      >
+      <Button class="ab" @click="popUserSetRole" type="info">添加权限</Button>
       <Button class="ab" @click="modal1 = true" type="info">添加</Button>
       <Button class="ab" @click="delUser(data1[i].id)" type="success"
         >删除</Button
@@ -18,6 +15,8 @@
       />
       <Button class="ab" @click="serch" type="error">查询</Button>
     </div>
+    <!-- 权限模态框 -->
+    <SetPer :SetRowData="selectedData"></SetPer>
     <!-- 模态框 -->
     <Modal v-model="modal1" title="添加用户" @on-ok="ok" @on-cancel="cancel">
       <Form :model="formLeft" label-position="left" :label-width="100">
@@ -34,7 +33,12 @@
     </Modal>
     <div>
       <!-- 表格  -->
-      <Table border :columns="columns12" :data="data1">
+      <Table
+        border
+        :columns="columns12"
+        @on-selection-change="getSelectData"
+        :data="data1"
+      >
         <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
         </template>
@@ -62,7 +66,6 @@
       show-elevator
       show-total
     />
-    <!-- <Page @on-change="Pagechange" :total="totalNum" /> -->
     <Modal
       v-model="modal6"
       title="Title"
@@ -88,10 +91,19 @@
 import axios from "axios";
 // import { constants } from "crypto";
 import api from "../api/http";
+import SetPer from "../components/person";
+import eventbus from "../eventBus";
 
 export default {
   data() {
     return {
+      userData: [], //往表格添加数据
+      selectedData: [], //已选中的数据
+      searchVal: "", //搜索查询文本框里的值
+      totalNumber: Number(""), //一共多少条数据
+      page: 1,
+      limit: 10,
+      RoleList: [], //存放所有的角色
       formLeft: {
         name: "",
         school: "",
@@ -111,8 +123,15 @@ export default {
       totalNum: Number(""),
       pageNum: 10,
       current: 1,
+      // 权限设置
+      modal13: false,
 
       columns12: [
+        {
+          type: "selection",
+          width: 60,
+          align: "center"
+        },
         {
           title: "ID",
           key: "id"
@@ -139,7 +158,18 @@ export default {
       data1: []
     };
   },
+  components: {
+    SetPer
+  },
   methods: {
+    // 设置权限
+    popUserSetRole() {
+      eventbus.$emit("SetPer");
+    },
+    getSelectData(selection) {
+      this.selectedData = selection; //table列表中选中的数据
+      console.log(this.selectedData);
+    },
     // 查询
     serch() {
       axios
@@ -177,6 +207,7 @@ export default {
           .then(res => {//eslint-disable-line
           this.data1.splice(index, 1);
           this.$message.success("删除成功");
+          this.initTable();
         })
         .catch(() => {
           this.$message.success("删除失败！", "删除提醒");
@@ -191,9 +222,6 @@ export default {
           this.initTable();
         })
         .catch(() => {});
-    },
-    handleSelectAll(status) {
-      this.$refs.selection.selectAll(status);
     },
     cancel() {
       console.log(1);
