@@ -82,7 +82,7 @@
 import { Message } from "element-ui";
 import service from "../../service/index";
 import EventBus from "../../eventBus";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "fromcontentview",
   data() {
@@ -146,7 +146,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["dialogtype", "selectItem"]),
+    ...mapState(["dialogtype", "selectItem", "tableObj"]),
     isDel() {
       if (this.ruleForm.del) {
         return "删除";
@@ -196,6 +196,7 @@ export default {
     this.editFromInit();
   },
   methods: {
+    ...mapMutations(["setCurrentPage"]),
     initFrom() {
       for (let k in this.ruleForm) {
         this.ruleForm[k] = "";
@@ -208,10 +209,6 @@ export default {
       for (let k in this.selectItem[0]) {
         this.ruleForm[k] = this.selectItem[0][k];
       }
-      // let arr = this.selectItem[0].subon.trim().split(" ");
-      // this.ruleForm.date1 = arr[0];
-      // console.log(arr[1]);
-      // this.ruleForm.date2 = arr[1];
       let t = new Date(this.selectItem[0].subon);
       this.ruleForm.date1 = t;
       this.ruleForm.date2 = t;

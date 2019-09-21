@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-09-04 15:41:33
- * @LastEditTime: 2019-09-07 14:35:51
+ * @LastEditTime: 2019-09-07 15:12:34
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -11,6 +11,8 @@
       <Button @click="modal1 = true" type="info">添加用户</Button>
       <Button type="success">删除用户</Button>
       <Button type="warning">编辑用户</Button>
+      <Button type="success">设置权限</Button>
+      <Button type="warning">设置角色</Button>
       <Button @click="serch" type="error">查询</Button>
       <Input
         class="search-user"
@@ -247,7 +249,7 @@ export default {
 
     initTable() {
       api
-        .getUser(this.page, this.limit, this.serchVal)
+        .getUser1(this.page, this.limit, this.serchVal)
         .then(res => { //eslint-disable-line
           this.data1 = res.data;
           this.totalNum = Number(res.headers["x-total-count"]);
@@ -264,7 +266,7 @@ export default {
     },
     // 分页
     getUser() {
-      api.getUser(this.page, this.pageNum).then(res => {
+      api.getUser1(this.page, this.pageNum).then(res => {
         this.data1 = res.data;
         this.initTable();
       });
@@ -296,7 +298,6 @@ export default {
     }
   },
   created() {
-    this.getUser();
     axios
       .get("http://localhost:8888/per/user")
       .then(res => {
@@ -306,6 +307,7 @@ export default {
       .catch(e => {
         console.log(e);
       });
+    this.getUser();
   }
 };
 </script>

@@ -3,11 +3,14 @@
     <el-button @click="add" type="primary">添加权限</el-button>
     <el-button @click="del" type="warning">删除权限</el-button>
     <el-button @click="changeRight" type="success">编辑权限</el-button>
+    <el-button @click="addUser" type="danger">关联用户</el-button>
     <div class="search">
       <Input
         search
         enter-button
+        @on-change="searchFunction2"
         @on-search="searchFunction1"
+        @on-enter="searchFunction3"
         :maxlength="100"
         placeholder="请输入要搜索的内容"
       />
@@ -15,6 +18,9 @@
 
     <el-dialog :title="rightTitle" :visible.sync="dialogFormVisible">
       <from-content v-on:closedialog="closeDialog"></from-content>
+    </el-dialog>
+    <el-dialog title="关联用户" :visible.sync="dialogTableVisible">
+      <role-table v-on:closetable="closeDialog"></role-table>
     </el-dialog>
   </div>
 </template>
@@ -24,6 +30,7 @@ import FromContent from "./FromContent";
 import EventBus from "../../eventBus";
 import { Message } from "element-ui";
 import service from "../../service/index";
+import RoleTable from "./RoleTable";
 
 export default {
   name: "mainheader",
@@ -31,32 +38,61 @@ export default {
     return {
       dialogFormVisible: false,
       rightTitle: "",
-      paramID: ""
+      paramID: "",
+      dialogTableVisible: false
     };
   },
   components: {
-    "from-content": FromContent
+    "from-content": FromContent,
+    "role-table": RoleTable
   },
   computed: {
-    ...mapState(["buttonId", "selectItem"])
+    ...mapState(["buttonId", "selectItem", "tableObj"])
   },
   methods: {
-    ...mapMutations(["setDialogType"]),
-    // searchFunction2(val) {
-    //   if (val.data) {
-    //     this.paramID += val.data;
-    //   } else {
-    //     this.paramID.split(-1, 1, "");
-    //   }
-    //   console.log("id:", this.paramID);
-    // },
+    ...mapMutations(["setDialogType", "getTableObj", "setCurrentPage"]),
+    searchFunction3() {
+      service
+        .findItem(this.paramID)
+        .then(res => {
+          console.log("sea3", res.data);
+          EventBus.$emit("changeTableView", res.data);
+          this.getTableObj({ "x-total-count": res.data.length });
+        })
+        .catch(() => {
+          console.log("网络错误");
+        });
+    },
+    searchFunction2(val) {
+      if (val.data) {
+        this.paramID += val.data;
+        // console.log(this.paramID);
+      } else {
+        let arr = this.paramID.split("");
+        arr.splice(arr.length - 1, 1, "");
+        this.paramID = arr.join("");
+        // console.log(this.paramID, arr);
+        !this.paramID &&
+          service
+            .findItem(this.paramID)
+            .then(res => {
+              console.log(res.data);
+              EventBus.$emit("changeTableView", res.data);
+              this.getTableObj({ "x-total-count": res.data.length });
+            })
+            .catch(() => {
+              console.log("网络错误");
+            });
+      }
+    },
     searchFunction1(val) {
-      console.log("val:", val);
+      // console.log("val:", val);
       service
         .findItem(val)
         .then(res => {
           console.log(res.data);
           EventBus.$emit("changeTableView", res.data);
+          this.getTableObj({ "x-total-count": res.data.length });
         })
         .catch(() => {
           console.log("网络错误");
@@ -97,6 +133,18 @@ export default {
     closeDialog(e) {
       EventBus.$emit("refresh");
       this.dialogFormVisible = e;
+      this.dialogTableVisible = e;
+    },
+    addUser() {
+      if (this.selectItem.length == 0 || this.selectItem.length > 1) {
+        Message({
+          showClose: true,
+          message: "请选择关联用户的单一权限",
+          type: "warning"
+        });
+        return;
+      }
+      this.dialogTableVisible = true;
     }
   }
 };

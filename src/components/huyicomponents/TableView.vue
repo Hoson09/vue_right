@@ -64,20 +64,25 @@ export default {
     };
   },
   computed: {
-    ...mapState(["buttonId"])
+    ...mapState(["buttonId", "currentPageNum", "tableObj", "tableCellNum"])
   },
   created() {
     this.initTable();
     EventBus.$on("refresh", () => {
-      this.initTable();
+      this.initTable(this.currentPageNum);
     });
     EventBus.$on("delete", () => {
       let itemID = parseInt(this.selectItem[0].id);
-      console.log(itemID);
+      // console.log(itemID);
+      console.log(this.tableCellNum);
+      let curPage = this.currentPageNum;
+      if (this.tableCellNum % 10 == 1 && curPage != 1) {
+        curPage = curPage - 1;
+      }
       service
         .delRight(itemID)
         .then(() => {
-          this.initTable();
+          this.initTable(curPage);
         })
         .catch(() => {
           console.log("网络错误");
@@ -91,14 +96,21 @@ export default {
     });
   },
   methods: {
-    ...mapMutations(["selectOptionNum", "getTableObj"]),
-    initTable() {
+    ...mapMutations([
+      "selectOptionNum",
+      "getTableObj",
+      "setCurrentPage",
+      "setTableCellNum"
+    ]),
+    initTable(page) {
       service
-        .getRight()
+        .getRight(page)
         .then(res => {
-          // console.log(res.headers["x-total-count"]);
           this.data4 = res.data;
           this.getTableObj(res.headers);
+          this.setTableCellNum(res.headers["x-total-count"]);
+          // console.log(this.tableObj["x-total-count"]);
+          // console.log(res.headers["x-total-count"]);
         })
         .catch(() => {
           console.log("请求出错");
@@ -107,7 +119,7 @@ export default {
     selectCol4(selections) {
       this.selectNum = selections.length;
       this.selectItem = selections;
-      // console.log(this.selectItem);
+      console.log(this.selectItem);
       this.selectOptionNum(this.selectItem);
     }
   }

@@ -12,6 +12,7 @@ import RightView from "./views/RightView";
 import AddLogin from "./views/addLogin";
 import Role from "./components/role";
 import usercj from "./components/usercj";
+import MainList from "./views/MainList";
 // import about from "./views/about";
 
 Vue.use(Router);
@@ -47,6 +48,11 @@ export default new Router({
           path: "/role",
           name: "Role",
           component: Role
+        },
+        {
+          path: "/mainlist",
+          name: "mainlist",
+          component: MainList
         }
       ]
     },
