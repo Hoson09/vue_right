@@ -65,5 +65,8 @@ export default {
         q: value
       }
     });
+  },
+  getUser() {
+    return axios.get("/per/user");
   }
 };
