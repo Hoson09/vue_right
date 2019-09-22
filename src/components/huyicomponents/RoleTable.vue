@@ -81,11 +81,17 @@ export default {
       if (this.user_permission.length != 0) {
         let arrUserPer = this.user_permission;
         console.log("arrUserPer:", arrUserPer);
-        let tempArray = arrUserPer.map(item => {
-          if (item.permissionId == this.selectItem[0].id) {
-            return item;
-          }
-        });
+        let isSelectObj = arrUserPer.find(
+          item => item.permissionId == this.selectItem[0].id
+        );
+        let tempArray = [];
+        if (isSelectObj) {
+          arrUserPer.forEach(item => {
+            if (item.permissionId == this.selectItem[0].id) {
+              tempArray.push(item);
+            }
+          });
+        }
         console.log("筛选出你选出的权限相关的数组~~~", tempArray);
         if (tempArray.length != 0) {
           let addAxiosArr = [];
@@ -126,9 +132,11 @@ export default {
               delAxiosArr.push(delAxiosObj);
               // indexArray.push(i);
 
-              //  删除成功后再在vuex上进行删除
+              //  删除成功后再在vuex上进行删除(如果是多个权限的删除，就要权限id和用户id都要相同才行)
               let index = this.user_permission.findIndex(
-                item => item.userId == tempArray[i].userId
+                item =>
+                  item.userId == tempArray[i].userId &&
+                  item.permissionId == tempArray[i].permissionId
               );
               this.user_permission.splice(index, 1);
               console.log("this.user_permission", this.user_permission);
@@ -343,11 +351,19 @@ export default {
           this.itemNum = res.headers["x-total-count"];
           console.log("user_permission", this.user_permission, this.data1);
           if (this.user_permission.length != 0) {
-            let tempArray = this.user_permission.map(item => {
-              if (item.permissionId == this.selectItem[0].id) {
-                return item;
-              }
-            });
+            let isSelectObj = this.user_permission.find(
+              item => item.permissionId == this.selectItem[0].id
+            );
+            let tempArray = [];
+            if (isSelectObj) {
+              this.user_permission.forEach(item => {
+                if (item.permissionId == this.selectItem[0].id) {
+                  tempArray.push(item);
+                }
+              });
+            }
+            console.log("筛选出你选出的权限相关的数组~~~", tempArray);
+
             if (tempArray.length != 0) {
               for (let i = 0; i < tempArray.length; i++) {
                 let index = this.data1.findIndex(
@@ -381,20 +397,20 @@ export default {
     //     }
     //   }
     // });
-    EventBus.$on("cleanTable", () => {
-      this.$refs.selection.selectAll(false);
-    });
-    EventBus.$on("initRole", () => {
-      this.initRoleView();
-    });
-  },
-  mounted() {
     // EventBus.$on("cleanTable", () => {
     //   this.$refs.selection.selectAll(false);
     // });
     // EventBus.$on("initRole", () => {
     //   this.initRoleView();
     // });
+  },
+  mounted() {
+    EventBus.$on("cleanTable", () => {
+      this.$refs.selection.selectAll(false);
+    });
+    EventBus.$on("initRole", () => {
+      this.initRoleView();
+    });
   }
 };
 </script>
