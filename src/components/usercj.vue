@@ -1,8 +1,8 @@
 <!--
  * @Description: In User Settings Edit
  * @Author: your name
- * @Date: 2019-09-04 15:41:33
- * @LastEditTime: 2019-09-07 15:12:34
+ * @Date: 2019-09-20 18:57:14
+ * @LastEditTime: 2019-09-21 09:48:26
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -11,8 +11,8 @@
       <Button @click="modal1 = true" type="info">添加用户</Button>
       <Button type="success">删除用户</Button>
       <Button type="warning">编辑用户</Button>
-      <Button type="success">设置权限</Button>
-      <Button type="warning">设置角色</Button>
+      <Button @click="settingpower" type="success">设置权限</Button>
+      <Button @click="settingrole" type="warning">设置角色</Button>
       <Button @click="serch" type="error">查询</Button>
       <Input
         class="search-user"
@@ -22,6 +22,11 @@
         style="width: 300px"
       />
     </div>
+    <!-- 组件 弹出来的设置角色的对话框 -->
+    <setrole :SetRowData="selectedData"></setrole>
+
+    <!-- 组件 弹出来的设置角色的对话框 -->
+    <setPer :SetPerData="selectedData"></setPer>
     <!-- 添加框 -->
     <Modal v-model="modal1" title="添加用户" @on-ok="ok" @on-cancel="cancel">
       <Form :model="formLeft" label-position="left" :label-width="100">
@@ -91,7 +96,13 @@
         </FormItem>
       </Form>
     </Modal>
-    <Table class="tab-box" border :columns="columns1" :data="data1">
+    <Table
+      class="tab-box"
+      border
+      @on-selection-change="getrowdata"
+      :columns="columns1"
+      :data="data1"
+    >
       <template slot-scope="{ row }" slot="name">
         <strong>{{ row.name }}</strong>
       </template>
@@ -123,11 +134,19 @@
 <script>
 import "iview/dist/styles/iview.css";
 import api from "../api/http";
+import eventbus from "../api/eventbus";
 import axios from "axios";  //eslint-disable-line
+import SetRole from "./user_role_cj";
+import setPer from "./user_per_cj";
 export default {
   name: "user",
+  components: {
+    setrole: SetRole,
+    setPer
+  },
   data() {
     return {
+      selectedData: [], //已选中的数据
       serchVal: "",
       modal1: false, //添加框
       modal2: false, //修改框
@@ -216,6 +235,16 @@ export default {
     };
   },
   methods: {
+    getrowdata(selection) {
+      this.selectedData = selection;
+    },
+    settingpower() {
+      eventbus.$emit("setPer");
+    },
+    settingrole() {
+      eventbus.$emit("setRole");
+      console.log(2);
+    },
     // 查询
     serch() {
       axios
