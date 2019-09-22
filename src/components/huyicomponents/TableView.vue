@@ -68,8 +68,11 @@ export default {
   },
   created() {
     this.initTable();
+    this.initPermission();
     EventBus.$on("refresh", () => {
       this.initTable(this.currentPageNum);
+      //每次刷新后没有选中任何实例对象，所以把vuex上的数据置为空
+      this.selectOptionNum([]);
     });
     EventBus.$on("delete", () => {
       let itemID = parseInt(this.selectItem[0].id);
@@ -100,7 +103,8 @@ export default {
       "selectOptionNum",
       "getTableObj",
       "setCurrentPage",
-      "setTableCellNum"
+      "setTableCellNum",
+      "setUser_Permission"
     ]),
     initTable(page) {
       service
@@ -114,6 +118,19 @@ export default {
         })
         .catch(() => {
           console.log("请求出错");
+        });
+      //每次重新进入这个界面生成表格后没有选中任何实例对象，所以把vuex上的数据置为空
+      this.selectOptionNum([]);
+    },
+    initPermission() {
+      service
+        .getUser_permission()
+        .then(res => {
+          console.log("init:", res.data);
+          this.setUser_Permission(res.data);
+        })
+        .catch(() => {
+          console.log("网络错误");
         });
     },
     selectCol4(selections) {

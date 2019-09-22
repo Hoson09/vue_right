@@ -66,7 +66,29 @@ export default {
       }
     });
   },
-  getUser() {
-    return axios.get("/per/user");
+  getUser(page = 1, limit = 5) {
+    return axios.get("/per/user", {
+      params: {
+        _page: page,
+        _limit: limit
+      }
+    });
+  },
+  //用户权限相关接口
+  linkUser_permission(data) {
+    //增加权限用户的关联
+    return axios.post("/per/user_permission", data);
+  },
+  getUser_permission() {
+    //获取用户权限关联
+    return axios.get("/per/user_permission");
+  },
+  //   putUser_permission(id, data) {
+  //     //修改用户权限的关联
+  //     return axios.put("/per/user_permission/" + id, data);
+  //   },
+  delUser_permission(id) {
+    //删除用户权限的关联。
+    return axios.delete("/per/user_permission/" + id);
   }
 };

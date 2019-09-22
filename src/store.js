@@ -16,7 +16,8 @@ export default new Vuex.Store({
     dialogtype: "addOptions",
     tableObj: {},
     currentPageNum: "",
-    tableCellNum: ""
+    tableCellNum: "",
+    user_permission: []
   },
   mutations: {
     treeClick(state, payload) {
@@ -36,6 +37,12 @@ export default new Vuex.Store({
     },
     setTableCellNum(state, payload) {
       state.tableCellNum = payload;
+    },
+    setUser_Permission(state, payload) {
+      state.user_permission = payload;
+    },
+    pushUser_Permission(state, payload) {
+      state.user_permission.push(payload);
     }
   },
   actions: {}
