@@ -19,8 +19,12 @@
     <el-dialog :title="rightTitle" :visible.sync="dialogFormVisible">
       <from-content v-on:closedialog="closeDialog"></from-content>
     </el-dialog>
-    <el-dialog title="关联用户" :visible.sync="dialogTableVisible">
-      <role-table v-on:closetable="closeDialog"></role-table>
+    <el-dialog
+      title="关联用户"
+      :visible.sync="dialogTableVisible"
+      :before-close="handleClose"
+    >
+      <role-table v-on:closetable="closeTable"></role-table>
     </el-dialog>
   </div>
 </template>
@@ -47,10 +51,15 @@ export default {
     "role-table": RoleTable
   },
   computed: {
-    ...mapState(["buttonId", "selectItem", "tableObj"])
+    ...mapState(["buttonId", "selectItem", "tableObj", "user_permission"])
   },
   methods: {
     ...mapMutations(["setDialogType", "getTableObj", "setCurrentPage"]),
+    handleClose(done) {
+      //这个是page关闭时调用的方法。
+      EventBus.$emit("cleanTable", false);
+      done();
+    },
     searchFunction3() {
       service
         .findItem(this.paramID)
@@ -133,6 +142,9 @@ export default {
     closeDialog(e) {
       EventBus.$emit("refresh");
       this.dialogFormVisible = e;
+    },
+    closeTable(e) {
+      // EventBus.$emit("refresh");
       this.dialogTableVisible = e;
     },
     addUser() {
@@ -144,6 +156,9 @@ export default {
         });
         return;
       }
+      // console.log("sss:", this.user_permission);
+      //这里有问题。需要改造。
+      EventBus.$emit("initRole");
       this.dialogTableVisible = true;
     }
   }
