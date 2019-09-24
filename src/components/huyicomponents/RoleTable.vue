@@ -146,6 +146,13 @@ export default {
             console.log(222);
             this.promiseDelAll(delAxiosArr);
           }
+          if (delAxiosArr.length == 0 && addAxiosArr.length == 0) {
+            Message({
+              showClose: true,
+              message: "您未对用户权限做任何修改",
+              type: "warning"
+            });
+          }
         } else {
           if (this.selectionUserItems.length != 0) {
             let addAxiosArr = [];
@@ -346,6 +353,7 @@ export default {
       service
         .getUser(pageNum, size)
         .then(res => {
+          this.closeRoleView();
           // console.log("user:", res);
           this.data1 = res.data;
           this.itemNum = res.headers["x-total-count"];
@@ -365,13 +373,17 @@ export default {
             console.log("筛选出你选出的权限相关的数组~~~", tempArray);
 
             if (tempArray.length != 0) {
+              let temparr = [];
               for (let i = 0; i < tempArray.length; i++) {
                 let index = this.data1.findIndex(
                   item => item.id == tempArray[i].userId
                 );
                 console.log("index", index);
                 this.data1[index]._checked = true;
+                temparr.push(this.data1[index]);
               }
+              console.log("temparr", temparr);
+              this.selectionUserItems = temparr;
             }
           }
         })
@@ -379,6 +391,10 @@ export default {
           console.log(err);
           console.log("网络错误");
         });
+      console.log("initRole selectionUserItems:", this.selectionUserItems);
+    },
+    closeRoleView() {
+      this.$refs.selection.selectAll(false);
     }
   },
   created() {
@@ -405,9 +421,10 @@ export default {
     // });
   },
   mounted() {
-    EventBus.$on("cleanTable", () => {
-      this.$refs.selection.selectAll(false);
-    });
+    // EventBus.$on("cleanTable", () => {
+    //   this.closeRoleView();
+    //   console.log(this);
+    // });
     EventBus.$on("initRole", () => {
       this.initRoleView();
     });

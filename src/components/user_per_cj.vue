@@ -83,7 +83,7 @@ export default {
         let data = {
           id: Date.now() + Math.ceil(Math.random() * 100),
           userId: this.userId,
-          powerId: item.id,
+          permissionId: item.id,
           del: 0,
           subon: "2019-05-08 16:57:50"
         };

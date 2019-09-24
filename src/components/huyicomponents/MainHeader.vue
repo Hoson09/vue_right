@@ -57,7 +57,7 @@ export default {
     ...mapMutations(["setDialogType", "getTableObj", "setCurrentPage"]),
     handleClose(done) {
       //这个是page关闭时调用的方法。
-      EventBus.$emit("cleanTable", false);
+      // EventBus.$emit("cleanTable", false);
       done();
     },
     searchFunction3() {
@@ -145,6 +145,8 @@ export default {
     },
     closeTable(e) {
       // EventBus.$emit("refresh");
+
+      // EventBus.$emit("cleanTable", false);
       this.dialogTableVisible = e;
     },
     addUser() {

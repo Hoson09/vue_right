@@ -16,12 +16,14 @@
       node-key="id"
       ref="tree"
       @node-click="clickHandle"
+      @node-expand="expandNode"
     >
     </el-tree>
   </div>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
+import service from "../service/index";
 export default {
   name: "treeview",
   data() {
@@ -61,6 +63,9 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(["getUserID", "getUserAllRight"])
+  },
   methods: {
     ...mapMutations(["treeClick"]),
     clickHandle(data) {
@@ -69,7 +74,41 @@ export default {
     },
     setCurrentNode(val) {
       console.log(val);
+    },
+    expandNode(a) {
+      console.log("userID", this.getUserID);
+      console.log("getUserAllRight", this.getUserAllRight);
+      console.log(a);
+      let temparr = [];
+      for (let i = 0; i < a.children.length; i++) {
+        let index = this.getUserAllRight.findIndex(
+          item => item.url == a.children[i].url.toLowerCase()
+        );
+        if (index < 0) {
+          temparr.push(a.children[i].url);
+        }
+      }
+      if (temparr.length != 0) {
+        console.log("用户不具有权限的url集合", temparr);
+        for (let i = 0; i < temparr.length; i++) {
+          let index = a.children.findIndex(item => item.url == temparr[i]);
+          a.children.splice(index, 1);
+        }
+      }
+    },
+    getUserRightData() {
+      service
+        .getUserPer(this.getUserID)
+        .then(res => {
+          this.$store.commit("setUserAllRight", res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  },
+  created() {
+    this.getUserRightData();
   }
 };
 </script>

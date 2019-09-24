@@ -204,7 +204,7 @@ export default {
       this.ruleForm.del = false;
     },
     editFrom() {
-      // console.log(this.selectItem);
+      console.log(this.selectItem);
       this.commitTitle = "编辑提交";
       for (let k in this.selectItem[0]) {
         this.ruleForm[k] = this.selectItem[0][k];
@@ -212,8 +212,9 @@ export default {
       let t = new Date(this.selectItem[0].subon);
       this.ruleForm.date1 = t;
       this.ruleForm.date2 = t;
-      this.ruleForm.del = this.selectItem ? true : false;
-      this.ruleForm.status = this.selectItem.status ? "禁用" : "启用";
+      this.ruleForm.del = this.selectItem[0].del ? true : false;
+      console.log("this.selectItem[0].status", this.selectItem[0].status);
+      this.ruleForm.status = this.selectItem[0].status ? "禁用" : "启用";
     },
     editFromInit() {
       // console.log("edit:", this.dialogtype);
@@ -241,7 +242,8 @@ export default {
           if (this.dialogtype == "editOptions") {
             service
               .changeRight(rightPostData.id, rightPostData)
-              .then(() => {
+              .then(res => {
+                console.log("changRight res.data", res.data);
                 Message({
                   showClose: true,
                   message: "修改权限成功",
@@ -260,8 +262,8 @@ export default {
           } else {
             service
               .addRight(rightPostData)
-              .then(() => {
-                // console.log("res", res.data);
+              .then(res => {
+                console.log("addRight res.data", res.data);
                 Message({
                   showClose: true,
                   message: "添加权限成功",

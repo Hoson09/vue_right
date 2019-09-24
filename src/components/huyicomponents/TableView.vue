@@ -51,9 +51,9 @@ export default {
           key: "subby"
         },
         {
-          title: "权限父ID",
+          title: "权限路径",
           width: 100,
-          key: "pId"
+          key: "url"
         }
       ],
       columns5: [],

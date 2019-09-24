@@ -41,6 +41,7 @@
 <script>
 import api from "../api/http";
 import { message } from "element-ui";
+import { mapMutations } from "vuex";
 
 export default {
   name: "addLogin",
@@ -74,6 +75,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setUserID"]),
     submitForm(formName) {
       this.$refs.ruleForm.validate(valid => {
         console.log(formName);
@@ -92,6 +94,10 @@ export default {
             .then(res => {
               console.log(res.data.code);
               if (res.data.code === 1) {
+                this.setUserID(res.data.user.id);
+                console.log("获取用户的id为:", res.data.user.id);
+                sessionStorage.setItem("login_token", res.data.token);
+                sessionStorage.setItem("loginUserDataID", res.data.user.id);
                 this.$router.push("/main");
               } else {
                 message.info("登录失败");

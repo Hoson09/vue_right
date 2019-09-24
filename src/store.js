@@ -17,7 +17,12 @@ export default new Vuex.Store({
     tableObj: {},
     currentPageNum: "",
     tableCellNum: "",
-    user_permission: []
+    user_permission: [],
+    // permissionIDs_actived: [],
+    userID: sessionStorage.getItem("loginUserDataID")
+      ? sessionStorage.getItem("loginUserDataID")
+      : "",
+    userAllRight: []
   },
   mutations: {
     treeClick(state, payload) {
@@ -43,7 +48,27 @@ export default new Vuex.Store({
     },
     pushUser_Permission(state, payload) {
       state.user_permission.push(payload);
+    },
+    // setPermissionIDs_actived(state, payload) {
+    //   state.permissionIDs_actived = payload;
+    // },
+    setUserID(state, payload) {
+      state.userID = payload;
+    },
+    setUserAllRight(state, payload) {
+      state.userAllRight = payload;
     }
   },
-  actions: {}
+  actions: {},
+  getters: {
+    // getPermissionIDs(state) {
+    //   return state.permissionIDs_actived;
+    // }
+    getUserID(state) {
+      return state.userID;
+    },
+    getUserAllRight(state) {
+      return state.userAllRight;
+    }
+  }
 });

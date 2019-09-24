@@ -45,6 +45,9 @@ export default {
       }
     });
   },
+  getAllRight() {
+    return axios.get("/per/permission");
+  },
   delRight(id) {
     return axios.delete("/per/permission/" + id);
   },
@@ -90,5 +93,9 @@ export default {
   delUser_permission(id) {
     //删除用户权限的关联。
     return axios.delete("/per/user_permission/" + id);
+  },
+  getUserPer(id) {
+    //获取用户的所有权限。
+    return axios.get("/per/getUserPer/" + id);
   }
 };
